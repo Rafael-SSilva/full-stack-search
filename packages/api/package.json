@@ -3,7 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "lint": "eslint . --fix",
+    "format": "prettier --write \"./**/*.{js,ts,tsx}\"",
     "dev": "tsx watch --clear-screen=false .",
     "dev:api": "npm run dev",
     "dev:no-watch": "tsx .",
@@ -17,13 +19,29 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongodb": "^6.7.0"
+    "mongodb": "^6.7.0",
+    "shared": "*"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "mongodb-memory-server": "^9.4.0",
     "tsx": "^4.16.2",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "jest": "^29.7.0",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "ts-jest": "^29.2.5",
+    "ts-node-dev": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "typescript-eslint": "^8.3.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "@eslint/js": "^9.9.1",
+    "@stylistic/eslint-plugin": "^2.7.2",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.5"
   }
 }

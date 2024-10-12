@@ -45,7 +45,7 @@ export class HotelController {
         throw Error('Error while getting Hotel. please check the logs')
       }
 
-      Applogger.error({ err, 'thm.hotel.id': id }, 'Application error')
+      Applogger.warn({ err, 'thm.hotel.id': id }, 'Application error')
 
       next(err)
     }

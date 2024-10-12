@@ -44,7 +44,7 @@ export class CityController {
       if (!(err instanceof ApplicationError)) {
         throw Error('Error while getting city. please check the logs')
       }
-      Applogger.error({ err, 'thm.city.id': id }, 'Application error')
+      Applogger.warn({ err, 'thm.city.id': id }, 'Application error')
       next(err)
     }
   }

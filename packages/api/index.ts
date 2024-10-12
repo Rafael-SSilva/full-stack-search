@@ -1,38 +1,36 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from 'cors';
-import { MongoClient } from "mongodb";
+import cors from 'cors'
+import { errorHandler } from 'domain/utils/error-handler'
+import dotenv from 'dotenv'
+import express from 'express'
+import { initiateMongoDB } from 'infrastructure/database/mongo/client'
+import { initiateRoutes } from 'interface/routes'
+import { Applogger } from 'shared'
 
-dotenv.config();
+dotenv.config()
 
 if (process.env.NODE_ENV !== 'production' && !process.env.DATABASE_URL) {
-  await import('./db/startAndSeedMemoryDB');
+  await import('./infrastructure/database/mongo/startAndSeedMemoryDB')
 }
 
-const PORT = process.env.PORT || 3001;
-if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
-const DATABASE_URL = process.env.DATABASE_URL;
+const defaultPort = 3001
+const PORT = process.env.PORT || defaultPort
 
-const app = express();
+if (!process.env.DATABASE_URL) {
+  throw new Error('DATABASE_URL is not set')
+}
+
+const app = express()
 
 app.use(cors())
-app.use(express.json());
+app.use(express.json())
 
-app.get('/hotels', async (req, res) => {
-  const mongoClient = new MongoClient(DATABASE_URL);
-  console.log('Connecting to MongoDB...');
+;(async (): Promise<void> => {
+  await initiateMongoDB()
 
-  try {
-    await mongoClient.connect();
-    console.log('Successfully connected to MongoDB!');
-    const db = mongoClient.db()
-    const collection = db.collection('hotels');
-    res.send(await collection.find().toArray())
-  } finally {
-    await mongoClient.close();
-  }
-})
+  app.use(await initiateRoutes())
+  app.use(errorHandler)
+})()
 
 app.listen(PORT, () => {
-  console.log(`API Server Started at ${PORT}`)
+  Applogger.info(`API Server Started at ${PORT}`)
 })

@@ -50,7 +50,7 @@ export class CountryController {
         throw Error('Error while getting city. please check the logs')
       }
 
-      Applogger.error({ err, 'thm.country.id': id }, 'Application error')
+      Applogger.warn({ err, 'thm.country.id': id }, 'Application error')
 
       next(err)
     }

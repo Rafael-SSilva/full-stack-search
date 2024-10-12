@@ -563,4 +563,4 @@ export const hotels = [
     countryisocode: 'BG',
     star_rating: 4,
   },
-];
+]

@@ -84,3 +84,40 @@ body {
   max-height: 450px;
   overflow: scroll;
 }
+
+.star-rating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.stars-wrapper {
+  position: relative;
+  padding-right: 0.5rem;
+}
+
+.star {
+  color: #ccc;
+  font-size: 1.5rem;
+  position: absolute;
+  display: inline-block;
+}
+
+.star-full {
+  color: gold;
+}
+
+.star-half {
+  position: absolute;
+  overflow: hidden;
+}
+
+.star-half::before {
+  content: "\2605";
+  position: absolute;
+  color: gold;
+  overflow: hidden;
+  width: 50%;
+  white-space: nowrap;
+  display: block;
+}

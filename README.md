@@ -88,9 +88,27 @@ For larger or more time-intensive changes, you're welcome to outline your ideas 
 
 ### Write-up
 
-<!-- Write-up/conclusion section -->
+**COMMON**
 
-_When all the behaviour is implemented, feel free to add some observations or conclusions you like to share in the section_
+- **Shared package:** Created a package to standardize data types and share common logic between different projects.
+
+**API**
+ - **Architecture:** Reagended the project structure using an abstraction of the clean architecture. This creates a clearer separation of concerns, ease the maintenance and makes the testing more efficient.
+ - **Database:** MongoDB connection is now separated from other logics.
+ - **Logic:** Our Domain logic now is separated from our Business logic
+ - **Use-cases:** Use cases introduced to separate the cases logic from our adapter (interface). With this approach we can easily test our use cases with no interference in our presentation layer
+ - **Containers:** DI (Dependenc Inversion) containers created to inject our use logic into our controllers. It gives us space to move our business logics gradually. i.e: request information from an external service to complement our FindHotelUseCase 
+ - **Error Handling:** Added an error handling mechanism to improve the developer and service operation experience.
+ - **Bunyan logger:** Added logger libraby to help us to track application issues. when it comes to daily operation and support, this has a significant value.
+
+**FRONTNED**
+  - **Hooks:**
+    - Implemented a debounce mechanism to optimize search performance and reduce unnecessary API requests.
+    - Implemented Search hook to separate the fetching logic from our content rendering.
+  - **Search functionality:** Improved search functionality expirience.
+  - **Components:** Crated separated components, improving separation of concerns and minimize the code repetition.
+  - **React Routing:** Added React Router DOM to manage navigation within the application, it gives us freedom to work on more elaborated routes.
+  - **Some unit tests:** Added unit tests to cover at least the basic functionality.
 
 ### Database structure
 
